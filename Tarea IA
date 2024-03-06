@@ -1,0 +1,43 @@
+class Estudiante:
+    def __init__(self, nombre, calificaciones, asistencia):
+        self.nombre = nombre
+        self.calificaciones = calificaciones
+        self.asistencia = asistencia
+
+    def calcular_promedio(self):
+        return sum(self.calificaciones) / len(self.calificaciones)
+
+    def determinar_aprobacion(self):
+        promedio = self.calcular_promedio()
+        if promedio >= 3 and self.asistencia >= 80:
+            return "Aprobado"
+        else:
+            return "Reprobado"
+
+    def sugerir_plan_de_accion(self):
+        promedio = self.calcular_promedio()
+        if promedio < 3:
+            return "Necesita mejorar sus calificaciones. Se sugiere estudiar más y buscar ayuda adicional si es necesario."
+        elif self.asistencia < 80:
+            return "Necesita mejorar su asistencia. Se sugiere asistir regularmente a clases y hablar con el profesor si hay problemas de horario."
+        else:
+            return "No se requiere un plan de acción adicional."
+
+# Solicitar datos al usuario
+nombre = input("Ingrese el nombre del estudiante: ")
+calificaciones = []
+for i in range(4):
+    calificacion = float(input(f"Ingrese la calificación {i+1}: "))
+    calificaciones.append(calificacion)
+asistencia = float(input("Ingrese el porcentaje de asistencia del estudiante: "))
+
+# Crear objeto Estudiante
+estudiante = Estudiante(nombre, calificaciones, asistencia)
+
+# Obtener resultados
+aprobacion = estudiante.determinar_aprobacion()
+plan_de_accion = estudiante.sugerir_plan_de_accion()
+
+# Mostrar resultados
+print(f"\nEl estudiante {estudiante.nombre} ha sido {aprobacion}.")
+print(f"Plan de acción sugerido: {plan_de_accion}")
